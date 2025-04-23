@@ -1,4 +1,4 @@
-// Push a button to turn on an LED on the breadboard
+// Push a button to turn on a random LED on the breadboard
 // Need 6 LEDs, a button, and wires
 
 int buttonPin = 10;
