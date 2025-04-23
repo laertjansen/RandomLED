@@ -1,0 +1,49 @@
+// Push a button to turn on an LED on the breadboard
+// Need 6 LEDs, a button, and wires
+
+int buttonPin = 10;
+int buttonNew;
+int buttonOld = 1;
+
+bool isReadyToResetLEDs = true;
+
+int ledPins[] = { 2, 3, 4, 5, 6, 7 };
+
+void setup() {
+  Serial.begin(9600);
+
+  for (int i = 0; i < 6; i++) {
+    pinMode(ledPins[i], OUTPUT);
+    digitalWrite(ledPins[i], HIGH);  
+  }
+
+  pinMode(buttonPin, INPUT);
+}
+
+void loop() {
+  buttonNew = digitalRead(buttonPin);
+  delay(50);
+
+  if (buttonNew == LOW && buttonOld == HIGH) {
+
+    Serial.println("button pressed");
+
+    int totalLeds = sizeof(ledPins) / sizeof(ledPins[0]);
+    int randomLED = random(0, totalLeds);
+
+    for (int i = 0; i < totalLeds; i++) {
+      digitalWrite(ledPins[i], LOW);
+    }
+
+    digitalWrite(ledPins[randomLED], HIGH);
+
+    delay(2000);
+
+    for (int i = 0; i < totalLeds; i++) {
+      pinMode(ledPins[i], OUTPUT);
+      digitalWrite(ledPins[i], HIGH);  
+    }
+  }
+
+  buttonOld = buttonNew;
+}
