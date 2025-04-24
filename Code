@@ -15,7 +15,7 @@ void setup() {
     digitalWrite(ledPins[i], HIGH);  
   }
 
-  pinMode(buttonPin, INPUT);
+  pinMode(buttonPin, INPUT_PULLUP);
 }
 
 void loop() {
